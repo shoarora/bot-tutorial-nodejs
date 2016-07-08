@@ -23,7 +23,7 @@ angular.module('messageApp', ['ui.bootstrap'])
     //$scope.today();
 
     $scope.setCurrentExp = function(regex) {
-        curExp = regex;
+        $scope.curExp = regex;
         console.log('regex set to ' + regex.exp);
         console.log('regex set to ' + curExp.exp);
     };
