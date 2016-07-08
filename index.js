@@ -246,12 +246,12 @@ app.post('/api/expressions', function(req, res) {
       res.send(err);
     }
     console.log('post success');
-    expressions.find(function(err, expressions) {
+    expressions.find(function(err, exp) {
       if (err) {
         res.send(err);
       }
       console.log('fetched new');
-      res.json(expressions);
+      res.json(exp);
     });
   });
 });
