@@ -87,22 +87,31 @@ var expressions = mongoose.model('expressions', schema3);
 var curSchedule = [];
 getSchedules();
 
+function sendScheduledMessage(cur) {
+    API.Bots.post(process.env.TOKEN, process.env.BOT_ID, cur.message, {}, function(err, ret) {
+    });
+}
 
 timeplan.repeat({
   period: "10s",
   task: function() {
     console.log('checking schedule, length is ' + curSchedule.length);
+    var toSend = [];
     for (var i = 0; i < curSchedule.length; i++) {
       cur = curSchedule[i];
       now = Date.now();
       time = cur.when;
       if (now >= time) {
         console.log(cur.message);
-        API.Bots.post(process.env.TOKEN, process.env.BOT_ID, cur.message, {}, function(err, ret) {
-          console.log(cur._id);
-          deleteSchedule(cur._id);
-        });
+        toSend.push(cur);
       }
+    }
+    var length = toSend.size();
+    for (var i = 0; i < length; i++) {
+        var cur = toSend[i];
+        sendScheduledMessage(cur);
+        console.log(cur._id);
+        deleteSchedule(cur._id);
     }
   }
 });
