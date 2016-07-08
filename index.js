@@ -106,7 +106,7 @@ timeplan.repeat({
         toSend.push(cur);
       }
     }
-    var length = toSend.size();
+    var length = toSend.length;
     for (var i = 0; i < length; i++) {
         var cur = toSend[i];
         sendScheduledMessage(cur);
