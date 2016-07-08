@@ -242,14 +242,12 @@ app.post('/api/expressions', function(req, res) {
     if (err) {
       res.send(err);
     }
-    setTimeout(function(exp) {
     expressions.find(function(err, exp) {
       if (err) {
         res.send(err);
       }
-      res.json(exp);
+      setTimeout(function(exp) {res.json(exp);}, 1000);
     });
-    }, 3000);
   });
 });
 
@@ -265,7 +263,7 @@ app.delete('/api/expressions/:exp_id', function(req, res) {
       if (err) {
         res.send(err);
       }
-      res.json(exp);
+      res.json(expr);
     });
   });
 });
