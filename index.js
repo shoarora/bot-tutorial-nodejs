@@ -245,10 +245,12 @@ app.post('/api/expressions', function(req, res) {
     if (err) {
       res.send(err);
     }
+    console.log('post success');
     expressions.find(function(err, expressions) {
       if (err) {
         res.send(err);
       }
+      console.log('fetched new');
       res.json(expressions);
     });
   });
