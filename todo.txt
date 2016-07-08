@@ -3,8 +3,10 @@ todo:
 ORDER
 
 fix schedule bug
-clean up front end
+send messages from regexes
 move mongo stuff to .env
+clean up front end
+
 
 BACKEND
 fix async of schedule

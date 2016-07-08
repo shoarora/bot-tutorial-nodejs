@@ -139,14 +139,16 @@ angular.module('messageApp', ['ui.bootstrap'])
     };
 
     $scope.addResponse = function() {
-        $scope.curExp.responses.push($scope.newResp);
-        $scope.updateRegex();
+        if ($scope.curExp.responses.push($scope.newResp)) {
+            $scope.updateRegex();
+        }
     };
 
     $scope.deleteResponse = function(resp) {
         var index = $scope.curExp.responses.indexOf(resp);
-        $scope.curExp.responses.splice(index, 1);
-        $scope.updateRegex();
+        if ($scope.curExp.responses.splice(index, 1)) {
+            $scope.updateRegex();
+        }
     };
 
     $scope.deleteRegex = function() {
