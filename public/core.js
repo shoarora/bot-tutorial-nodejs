@@ -127,7 +127,7 @@ angular.module('messageApp', ['ui.bootstrap'])
     };
 
     $scope.updateRegex = function() {
-        $http.post('/api/expressions', curExp)
+        $http.post('/api/expressions', $scope.curExp)
         .success(function(data) {
             $scope.regexes = data;
             $scope.newExp = null;
@@ -150,7 +150,7 @@ angular.module('messageApp', ['ui.bootstrap'])
     };
 
     $scope.deleteRegex = function() {
-        $http.delete('/api/expressions/' + curExp._id)
+        $http.delete('/api/expressions/' + $scope.curExp._id)
         .success(function(data) {
             $scope.regexes = data;
             $scope.curExp = data[0];
@@ -159,7 +159,4 @@ angular.module('messageApp', ['ui.bootstrap'])
             console.log('Error: ' + data);
         });
     };
-
-
-
   });
