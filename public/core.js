@@ -24,8 +24,6 @@ angular.module('messageApp', ['ui.bootstrap'])
 
     $scope.setCurrentExp = function(regex) {
         $scope.curExp = regex;
-        console.log('regex set to ' + regex.exp);
-        console.log('regex set to ' + curExp.exp);
     };
 
     /** API Interface **/
