@@ -1,9 +1,10 @@
 todo:
 
 ORDER
-fix callback functions
+
+fix schedule bug
 clean up front end
-add regex
+move mongo stuff to .env
 
 BACKEND
 fix async of schedule

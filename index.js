@@ -73,9 +73,14 @@ var schema2 = new mongoose.Schema({
     default: Date.now
   }
 });
+var schema3 = new mongoose.Schema({
+  exp: String,
+  responses: [String]
+});
 
 var messages = mongoose.model('messages', schema1);
 var schedules = mongoose.model('schedules', schema2);
+var expressions = mongoose.model('expressions', schema3);
 
 //set up timeplan ==================
 
@@ -155,18 +160,6 @@ function getSchedules() {
   });
 }
 
-
-function postSchedules(message, when) {
-  schedules.create({
-    message: message,
-    when: when
-  }, function(err, schedule) {
-    if (err) {
-      throw err;
-    }
-  });
-}
-
 function deleteSchedule(id) {
   schedules.remove({
     _id: id
@@ -181,7 +174,7 @@ app.get('/api/schedules', function(req, res) {
   schedules.find(function(err, schedules) {
     // if there is an error retrieving, send the error. nothing after res.send(err) will execute
     if (err) {
-      res.send(error);
+      res.send(err);
     }
     curSchedule = schedules;
     res.json(curSchedule);
@@ -202,7 +195,7 @@ app.post('/api/schedules', function(req, res) {
     schedules.find(function(err, schedules) {
       // if there is an error retrieving, send the error. nothing after res.send(err) will execute
       if (err) {
-        res.send(error);
+        res.send(err);
       }
       curSchedule = schedules;
       res.json(curSchedule);
@@ -214,7 +207,7 @@ app.post('/api/schedules', function(req, res) {
 // delete a message
 app.delete('/api/schedules/:schedule_id', function(req, res) {
   schedules.remove({
-    _id: req.body._id
+    _id: req.params.message_id
   }, function(err, schedule) {
     if (err) {
       res.send(err);
@@ -222,7 +215,7 @@ app.delete('/api/schedules/:schedule_id', function(req, res) {
     schedules.find(function(err, schedules) {
       // if there is an error retrieving, send the error. nothing after res.send(err) will execute
       if (err) {
-        res.send(error);
+        res.send(err);
       }
       curSchedule = schedules;
       res.json(curSchedule);
@@ -231,59 +224,47 @@ app.delete('/api/schedules/:schedule_id', function(req, res) {
   });
 });
 
-
-// get all messages
-app.get('/api/messages', function(req, res) {
-  // use mongoose to get all messages in the database
-  messages.find(function(err, messages) {
-
-    // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+app.get('/api/expressions', function(req, res) {
+  schedules.find(function(err, expressions) {
     if (err) {
       res.send(err);
     }
-
-    res.json(messages); // return all messages in JSON format
+    res.json(expressions);
   });
 });
 
-// create message and send back all messages after creation
-app.post('/api/messages', function(req, res) {
-
-  // create a message, information comes from AJAX request from Angular
-  messages.create({
-    text: req.body.text
-  }, function(err, message) {
+app.post('/api/expressions', function(req, res) {
+  expressions.create({
+    exp: req.body.exp,
+    responses: req.body.responses,
+    _id: req.body.exp_id || new mongoose.mongo.ObjectID()
+}, function(err, expression) {
     if (err) {
       res.send(err);
     }
-
-    // get and return all the messages after you create another
-    messages.find(function(err, messages) {
+    expressions.find(function(err, expressions) {
       if (err) {
         res.send(err);
       }
-      res.json(messages);
+      res.json(expressions);
     });
   });
-
 });
 
-// delete a message
-app.delete('/api/messages/:message_id', function(req, res) {
-  messages.remove({
-    _id: req.params.message_id
-  }, function(err, message) {
+app.delete('/api/expressions/:exp_id', function(req, res) {
+  expressions.remove({
+    _id: req.params.exp_id
+  }, function(err, expression) {
     if (err) {
       res.send(err);
     }
 
     // get and return all the messages after you create another
-    messages.find(function(err, messages) {
+    expressions.find(function(err, expressions) {
       if (err) {
-
         res.send(err);
       }
-      res.json(messages);
+      res.json(expressions);
     });
   });
 });

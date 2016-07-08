@@ -1,7 +1,7 @@
 angular.module('messageApp', ['ui.bootstrap'])
   .controller('mainController', function($scope, $http) {
 
-    $scope.poolInput = "";
+    $scope.newResp = "";
     $scope.sendInput = "";
     $scope.scheduleInput = "";
     $scope.messages = null;
@@ -9,7 +9,8 @@ angular.module('messageApp', ['ui.bootstrap'])
     $scope.groupme = null;
     $scope.popup = false;
     $scope.date = new Date();
-
+    $scope.regexes = [];
+    $scope.curExp = {};
 
     /** Date and Time **/
     $scope.openPopup = function() {
@@ -21,7 +22,9 @@ angular.module('messageApp', ['ui.bootstrap'])
     };
     //$scope.today();
 
-
+    $scope.setCurretExp = function(regex) {
+        curExp = regex;
+    };
 
     /** API Interface **/
 
@@ -72,8 +75,8 @@ angular.module('messageApp', ['ui.bootstrap'])
     $scope.createSchedule = function() {
       item = {};
 
-      item['message']= $scope.scheduleInput;
-      item['when'] = $scope.date;
+      item.message = $scope.scheduleInput;
+      item.when = $scope.date;
 
       $http.post('/api/schedules', item)
         .success(function(data) {
@@ -96,45 +99,65 @@ angular.module('messageApp', ['ui.bootstrap'])
         });
     };
 
-    /* Message Pool */
 
-    // when landing on the page, get all messages and show them
-    $scope.getMessages = function() {
-      $http.get('/api/messages')
+    /* Regexes and responses */
+
+    $scope.getRegexes = function() {
+      $http.get('/api/schedules')
         .success(function(data) {
-          $scope.messages = data;
-          console.log(data);
+          $scope.regexes = data;
         })
         .error(function(data) {
           console.log('Error: ' + data);
         });
     };
+    $scope.getRegexes();
 
-    // when submitting the add form, send the text to the node API
-    $scope.createMessage = function() {
-      item = {};
-      item['text'] = $scope.poolInput;
-      $http.post('/api/messages', item)
+    $scope.newRegex = function() {
+        var item = {};
+        item.exp = $scope.newExp;
+        $http.post('/api/expressions', item)
         .success(function(data) {
-          $scope.poolInput = ""; // clear the form so our user is ready to enter another
-          $scope.messages = data;
-          console.log(data);
+            $scope.regexes = data;
+            $scope.newExp = null;
         })
         .error(function(data) {
-          console.log('Error: ' + data);
+            console.log('Error: ' + data);
         });
     };
 
-    // delete a message after checking it
-    $scope.deleteMessage = function(id) {
-      $http.delete('/api/messages/' + id)
+    $scope.updateRegex = function() {
+        $http.post('/api/expressions', curExp)
         .success(function(data) {
-          $scope.messages = data;
-          console.log(data);
+            $scope.regexes = data;
         })
         .error(function(data) {
-          console.log('Error: ' + data);
+            console.log('Error: ' + data);
         });
     };
+
+    $scope.addResponse = function() {
+        $scope.curExp.responses.push($scope.newResp);
+        $scope.updateRegex();
+    };
+
+    $scope.deleteResponse = function(resp) {
+        var index = $scope.curExp.responses.indexOf(resp);
+        $scope.curExp.responses.splice(index, 1);
+        $scope.updateRegex();
+    };
+
+    $scope.deleteRegex = function(id) {
+        $http.delete('/api/expressions/' + id)
+        .success(function(data) {
+            $scope.regexes = data;
+            $scope.curExp = data[0];
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    };
+
+
 
   });
