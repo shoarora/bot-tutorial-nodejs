@@ -103,7 +103,7 @@ angular.module('messageApp', ['ui.bootstrap'])
     /* Regexes and responses */
 
     $scope.getRegexes = function() {
-      $http.get('/api/schedules')
+      $http.get('/api/expressions')
         .success(function(data) {
           $scope.regexes = data;
         })
@@ -119,6 +119,7 @@ angular.module('messageApp', ['ui.bootstrap'])
         $http.post('/api/expressions', item)
         .success(function(data) {
             $scope.regexes = data;
+            $scope.newExp = null;
         })
         .error(function(data) {
             console.log('Error: ' + data);
@@ -129,6 +130,7 @@ angular.module('messageApp', ['ui.bootstrap'])
         $http.post('/api/expressions', curExp)
         .success(function(data) {
             $scope.regexes = data;
+            $scope.newResp = null;
         })
         .error(function(data) {
             console.log('Error: ' + data);
