@@ -235,22 +235,44 @@ app.get('/api/expressions', function(req, res) {
 
 app.post('/api/expressions', function(req, res) {
   console.log("id is " + req.body._id);
-  expressions.create({
-    exp: req.body.exp,
-    responses: req.body.responses,
-    _id: req.body._id || new mongoose.mongo.ObjectID()
-  }, function(err, expression) {
-    if (err) {
-      res.send(err);
-    }
-    expressions.find(function(err, exp) {
+  if (req.body._id !== null) {
+    expressions.update({
+        _id: req.body._id
+      }, {
+        $set: {
+          responses: req.body.responses
+        }
+      },
+      function(err, expression) {
+        if (err) {
+          res.send(err);
+        }
+        expressions.find(function(err, exp) {
+          if (err) {
+            res.send(err);
+          }
+          console.log(exp);
+          res.json(exp);
+        });
+      });
+  } else {
+    expressions.create({
+      exp: req.body.exp,
+      responses: req.body.responses,
+      _id: req.body._id || new mongoose.mongo.ObjectID()
+    }, function(err, expression) {
       if (err) {
         res.send(err);
       }
-      console.log(exp);
-      res.json(exp);
+      expressions.find(function(err, exp) {
+        if (err) {
+          res.send(err);
+        }
+        console.log(exp);
+        res.json(exp);
+      });
     });
-  });
+  }
 });
 
 app.delete('/api/expressions/:exp_id', function(req, res) {
