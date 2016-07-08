@@ -242,17 +242,13 @@ app.post('/api/expressions', function(req, res) {
     if (err) {
       res.send(err);
     }
-    console.log('i thought tis was working');
-
     expressions.find(function(err, exp) {
       if (err) {
         res.send(err);
       }
-      console.log('i thought tis was working');
-      setTimeout(function() {
-        console.log('Blah blah blah blah extra-blah');
+      setTimeout(function(exp) {
+          res.json(exp);
       }, 3000);
-      res.json(exp);
     });
   });
 });
