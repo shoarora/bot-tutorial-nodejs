@@ -225,7 +225,7 @@ app.delete('/api/schedules/:schedule_id', function(req, res) {
 });
 
 app.get('/api/expressions', function(req, res) {
-  schedules.find(function(err, expressions) {
+  expressions.find(function(err, expressions) {
     if (err) {
       res.send(err);
     }
