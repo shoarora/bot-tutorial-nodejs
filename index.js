@@ -234,6 +234,7 @@ app.get('/api/expressions', function(req, res) {
 });
 
 app.post('/api/expressions', function(req, res) {
+  console.log(req.body.exp_id || 'id not found');
   expressions.create({
     exp: req.body.exp,
     responses: req.body.responses,
