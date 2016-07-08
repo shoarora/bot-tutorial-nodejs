@@ -246,7 +246,10 @@ app.post('/api/expressions', function(req, res) {
       if (err) {
         res.send(err);
       }
-      setTimeout(function(exp) {res.json(exp);}, 1000);
+      setTimeout(function(exp) {
+          res.json(exp);
+          console.log('waiting done');
+      }, 1000);
     });
   });
 });
