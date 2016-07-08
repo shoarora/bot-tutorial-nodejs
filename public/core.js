@@ -130,6 +130,7 @@ angular.module('messageApp', ['ui.bootstrap'])
         $http.post('/api/expressions', curExp)
         .success(function(data) {
             $scope.regexes = data;
+            $scope.newExp = null;
             $scope.newResp = null;
         })
         .error(function(data) {
