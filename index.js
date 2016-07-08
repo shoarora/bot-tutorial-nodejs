@@ -238,17 +238,20 @@ app.post('/api/expressions', function(req, res) {
     exp: req.body.exp,
     responses: req.body.responses,
     _id: req.body._id || new mongoose.mongo.ObjectID()
-}, function(err, expression) {
+  }, function(err, expression) {
     if (err) {
       res.send(err);
     }
+    console.log('i thought tis was working');
+
     expressions.find(function(err, exp) {
       if (err) {
         res.send(err);
       }
+      console.log('i thought tis was working');
       setTimeout(function() {
-    console.log('Blah blah blah blah extra-blah');
-}, 3000);
+        console.log('Blah blah blah blah extra-blah');
+      }, 3000);
       res.json(exp);
     });
   });
