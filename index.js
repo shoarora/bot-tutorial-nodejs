@@ -234,9 +234,6 @@ app.get('/api/expressions', function(req, res) {
 });
 
 app.post('/api/expressions', function(req, res) {
-  console.log(req.body.exp);
-  console.log(req.body.responses);
-  console.log(req.body._id);
   expressions.create({
     exp: req.body.exp,
     responses: req.body.responses,
@@ -245,14 +242,13 @@ app.post('/api/expressions', function(req, res) {
     if (err) {
       res.send(err);
     }
-    console.log('post success');
-    console.log(expression);
     expressions.find(function(err, exp) {
       if (err) {
         res.send(err);
       }
-      console.log('fetched new');
-      console.log(exp);
+      setTimeout(function() {
+    console.log('Blah blah blah blah extra-blah');
+}, 3000);
       res.json(exp);
     });
   });
