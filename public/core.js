@@ -148,8 +148,8 @@ angular.module('messageApp', ['ui.bootstrap'])
         $scope.updateRegex();
     };
 
-    $scope.deleteRegex = function(id) {
-        $http.delete('/api/expressions/' + id)
+    $scope.deleteRegex = function() {
+        $http.delete('/api/expressions/' + curExp._id)
         .success(function(data) {
             $scope.regexes = data;
             $scope.curExp = data[0];

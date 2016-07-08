@@ -258,7 +258,6 @@ app.delete('/api/expressions/:exp_id', function(req, res) {
     if (err) {
       res.send(err);
     }
-
     // get and return all the messages after you create another
     expressions.find(function(err, expressions) {
       if (err) {
