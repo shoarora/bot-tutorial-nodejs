@@ -177,6 +177,13 @@ function deleteSchedule(id) {
       throw err;
     }
   });
+  schedules.find(function(err, schedules) {
+    // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+    if (err) {
+      res.send(err);
+    }
+    curSchedule = schedules;
+  });
 }
 
 app.get('/api/schedules', function(req, res) {
@@ -189,7 +196,6 @@ app.get('/api/schedules', function(req, res) {
     res.json(curSchedule);
     return schedules;
   });
-
 });
 
 // create message and send back all messages after creation
