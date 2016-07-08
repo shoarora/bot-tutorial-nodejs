@@ -242,14 +242,14 @@ app.post('/api/expressions', function(req, res) {
     if (err) {
       res.send(err);
     }
+    setTimeout(function(exp) {
     expressions.find(function(err, exp) {
       if (err) {
         res.send(err);
       }
-      setTimeout(function(exp) {
-          res.json(exp);
-      }, 3000);
+      res.json(exp);
     });
+    }, 3000);
   });
 });
 
@@ -261,11 +261,11 @@ app.delete('/api/expressions/:exp_id', function(req, res) {
       res.send(err);
     }
     // get and return all the messages after you create another
-    expressions.find(function(err, expressions) {
+    expressions.find(function(err, exp) {
       if (err) {
         res.send(err);
       }
-      res.json(expressions);
+      res.json(exp);
     });
   });
 });
