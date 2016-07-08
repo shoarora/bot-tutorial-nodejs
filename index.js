@@ -246,7 +246,7 @@ app.post('/api/expressions', function(req, res) {
       if (err) {
         res.send(err);
       }
-      console.log('exp');
+      console.log(exp);
       res.json(exp);
     });
   });
