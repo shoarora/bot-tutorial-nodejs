@@ -22,8 +22,9 @@ angular.module('messageApp', ['ui.bootstrap'])
     };
     //$scope.today();
 
-    $scope.setCurretExp = function(regex) {
+    $scope.setCurrentExp = function(regex) {
         curExp = regex;
+        console.log('regex set to ' + regex.exp);
     };
 
     /** API Interface **/
