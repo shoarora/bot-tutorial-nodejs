@@ -234,11 +234,11 @@ app.get('/api/expressions', function(req, res) {
 });
 
 app.post('/api/expressions', function(req, res) {
-  console.log(req.body.exp_id || 'id not found');
+  console.log(req.body._id || 'id not found');
   expressions.create({
     exp: req.body.exp,
     responses: req.body.responses,
-    _id: req.body.exp_id || new mongoose.mongo.ObjectID()
+    _id: req.body._id || new mongoose.mongo.ObjectID()
 }, function(err, expression) {
     if (err) {
       res.send(err);
