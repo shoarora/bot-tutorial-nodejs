@@ -149,6 +149,7 @@ app.post('/api/bot', function(req, res) {
       var responses = curExp[k].responses;
       var index = Math.floor(Math.random() * responses.length);
       var resp = responses[index];
+      console.log(resp);
       sendMessage(resp);
     }
   }
