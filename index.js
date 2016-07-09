@@ -142,10 +142,10 @@ app.post('/api/groupme', function(req, res) {
 
 app.post('/api/bot', function(req, res) {
   var request = req.body.text;
-  for (int i = 0; i < curExp.length; i++) {
-    var re = RegExp(curExp[i].exp, 'i');
+  for (var k = 0; k < curExp.length; k++) {
+    var re = RegExp(curExp[k].exp, 'i');
     if (req.body.name.toLowerCase() != process.env.NAME.toLowerCase() && re.test(request)) {
-      var responses = curExp[i].responses;
+      var responses = curExp[k].responses;
       var index = Math.floor(Math.random() * responses.length);
       var resp = responses[index];
       sendMessage(resp);
