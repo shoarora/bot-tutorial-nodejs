@@ -85,11 +85,11 @@ var expressions = mongoose.model('expressions', schema3);
 //set up timeplan ==================
 
 var curSchedule = [];
+var curExp = [];
 getSchedules();
 
-function sendScheduledMessage(cur) {
-    API.Bots.post(process.env.TOKEN, process.env.BOT_ID, cur.message, {}, function(err, ret) {
-    });
+function sendMessage(message) {
+  API.Bots.post(process.env.TOKEN, process.env.BOT_ID, message, {}, function(err, ret) {});
 }
 
 timeplan.repeat({
@@ -108,10 +108,10 @@ timeplan.repeat({
     }
     var length = toSend.length;
     for (var i = 0; i < length; i++) {
-        var cur = toSend[i];
-        sendScheduledMessage(cur);
-        console.log(cur._id);
-        deleteSchedule(cur._id);
+      var cur = toSend[i];
+      sendMessage(cur.message);
+      console.log(cur._id);
+      deleteSchedule(cur._id);
     }
   }
 });
@@ -141,18 +141,15 @@ app.post('/api/groupme', function(req, res) {
 });
 
 app.post('/api/bot', function(req, res) {
-
-  //var request = JSON.parse(req.chunks[0]);
-  var botRegex = /[Hh]ans/;
   var request = req.body.text;
-  console.log(req.body.name != process.env.NAME);
-  console.log(process.env.NAME);
-
-
-  if (req.body.name.toLowerCase() != process.env.NAME.toLowerCase() && botRegex.test(request)) {
-    API.Bots.post(process.env.TOKEN, process.env.BOT_ID, 'i am hans', {}, function(err, ret) {
-      res.end('');
-    });
+  for (int i = 0; i < curExp.length; i++) {
+    var re = RegExp(curExp[i].exp, 'i');
+    if (req.body.name.toLowerCase() != process.env.NAME.toLowerCase() && re.test(request)) {
+      var responses = curExp[i].responses;
+      var index = Math.floor(Math.random() * responses.length);
+      var resp = responses[index];
+      sendMessage(resp);
+    }
   }
   res.end('');
 });
@@ -244,6 +241,7 @@ app.get('/api/expressions', function(req, res) {
     if (err) {
       res.send(err);
     }
+    curExp = expressions;
     res.json(expressions);
   });
 });
@@ -267,6 +265,7 @@ app.post('/api/expressions', function(req, res) {
             res.send(err);
           }
           console.log(exp);
+          curExp = exp;
           res.json(exp);
         });
       });
@@ -284,6 +283,7 @@ app.post('/api/expressions', function(req, res) {
           res.send(err);
         }
         console.log(exp);
+        curExp = exp;
         res.json(exp);
       });
     });
@@ -302,6 +302,7 @@ app.delete('/api/expressions/:exp_id', function(req, res) {
       if (err) {
         res.send(err);
       }
+      curExp = exp;
       res.json(expr);
     });
   });
