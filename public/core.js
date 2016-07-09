@@ -116,6 +116,7 @@ angular.module('messageApp', ['ui.bootstrap'])
     $scope.newRegex = function() {
         var item = {};
         item.exp = $scope.newExp;
+        item._id = null;
         $http.post('/api/expressions', item)
         .success(function(data) {
             $scope.regexes = data;
