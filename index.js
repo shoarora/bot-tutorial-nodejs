@@ -305,7 +305,7 @@ app.delete('/api/expressions/:exp_id', function(req, res) {
         res.send(err);
       }
       curExp = exp;
-      res.json(expr);
+      res.json(exp);
     });
   });
 });

@@ -2,7 +2,6 @@ todo:
 
 ORDER
 
-send messages from regexes
 move mongo stuff to .env
 refresh angular data regularly
 clean up front end
