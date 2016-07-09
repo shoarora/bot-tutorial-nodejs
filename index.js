@@ -142,6 +142,7 @@ app.post('/api/groupme', function(req, res) {
 
 app.post('/api/bot', function(req, res) {
   var request = req.body.text;
+  console.log(curExp);
   for (var k = 0; k < curExp.length; k++) {
     var re = RegExp(curExp[k].exp, 'i');
     if (req.body.name.toLowerCase() != process.env.NAME.toLowerCase() && re.test(request)) {
