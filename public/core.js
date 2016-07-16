@@ -17,7 +17,7 @@ angular.module('messageApp', ['ui.bootstrap'])
     function getData() {
       timer = $timeout(function() {
         console.log("Timeout executed", Date.now());
-      }, 30000);
+    }, 10000);
 
       timer.then(function() {
         console.log("Timer resolved!");
