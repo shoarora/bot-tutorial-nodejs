@@ -30,24 +30,25 @@
     <body ng-controller="mainController" ng-init="getMessages()">
 
         <div layout="row">
-            <div class='col-md-4' style="overflow:scroll; height:700px;">
+            <div class='col-md-4'>
                 <h3>Conversation</h3>
+                <div id="chat" style="overflow:scroll; height:550px;">    
+                    <ul>
+                        <li ng-repeat="message in groupme | reverse">
+                            <div layout="column">
+                                <h3>{{ message.name }}</h3>
+                                <h4>{{ message.text }}</h4>
+                            </div>
 
-                <ul>
-                    <li ng-repeat="message in groupme | reverse">
-                        <div layout="column">
-                            <h3>{{ message.name }}</h3>
-                            <h4>{{ message.text }}</h4>
-                        </div>
+                        </li>
+                    </ul>
 
-                    </li>
-                </ul>
-
-                <form>
-                    <label>Message</label>
-                    <input ng-model="sendInput" placeholder="Message" type="text">
-                    <button type="submit" ng-click="sendGroupme(sendInput)">Send</button>
-                </form>
+                    <form>
+                        <label>Message</label>
+                        <input ng-model="sendInput" placeholder="Message" type="text">
+                        <button type="submit" ng-click="sendGroupme(sendInput)">Send</button>
+                    </form>
+                </div>
 
             </div>
             <div class='col-md-4'>
@@ -119,8 +120,8 @@
 
                 <form>
                     <label>New Response</label>
-                    <input ng-model="newResp" type="text">
-                    <button type="submit" placeholder="New Response" ng-click="addResponse()">Add</button>
+                    <input ng-model="newResp" placeholder="New Response" type="text">
+                    <button type="submit" ng-click="addResponse()">Add</button>
                 </form>
 
             </div>

@@ -26,6 +26,7 @@ app.controller('mainController', function($scope, $timeout, $http) {
       $scope.getGroupme();
       $scope.getSchedule();
       $scope.getRegexes();
+      scrollToBottom();
       var now = new Date();
       if ($scope.date < now) {
         $scope.date = now;
@@ -37,7 +38,10 @@ app.controller('mainController', function($scope, $timeout, $http) {
   }
   getData();
 
-
+  function scrollToBottom() {
+    var elem = document.getElementById('chat');
+    elem.scrollTop = elem.scrollHeight;
+  }
 
 
   /** Date and Time **/
@@ -64,6 +68,7 @@ app.controller('mainController', function($scope, $timeout, $http) {
       .success(function(data) {
         $scope.groupme = data.messages;
         console.log(data);
+        scrollToBottom();
       })
       .error(function(data) {
         console.log('Error: ' + data);
