@@ -2,24 +2,9 @@ todo:
 
 ORDER
 
-refresh angular data regularly
-password lock
 clean up front end
-
-
-BACKEND
-fix async of schedule
-
-
-FRONT END
-clean shit up
-
-OTHER
-create interface to add/change regex and responses
-
-
-BUGS
-rename variables, api sections
-fix mongo bug
-fix date box bug
-fix AM/PM selector
+    improve buttons
+    mobile friendly
+    prof pic?
+    color theme
+    frames
