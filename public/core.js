@@ -12,6 +12,29 @@ angular.module('messageApp', ['ui.bootstrap'])
     $scope.regexes = [];
     $scope.curExp = {};
 
+    var timer;
+
+    function getData() {
+      timer = $timeout(function() {
+        console.log("Timeout executed", Date.now());
+      }, 30000);
+
+      timer.then(function() {
+        console.log("Timer resolved!");
+
+        $scope.getGroupme();
+        $scope.getSchedule();
+        $scope.getRegexes();
+
+      }, function() {
+        console.log("Timer rejected!");
+      });
+    }
+    getData();
+
+
+
+
     /** Date and Time **/
     $scope.openPopup = function() {
       $scope.popup = true;
@@ -23,7 +46,7 @@ angular.module('messageApp', ['ui.bootstrap'])
     //$scope.today();
 
     $scope.setCurrentExp = function(regex) {
-        $scope.curExp = regex;
+      $scope.curExp = regex;
     };
 
     /** API Interface **/
@@ -114,58 +137,58 @@ angular.module('messageApp', ['ui.bootstrap'])
     $scope.getRegexes();
 
     $scope.newRegex = function() {
-        if ($scope.newExp === '') {
-            return;
-        }
-        var item = {};
-        item.exp = $scope.newExp;
-        item._id = null;
-        $http.post('/api/expressions', item)
+      if ($scope.newExp === '') {
+        return;
+      }
+      var item = {};
+      item.exp = $scope.newExp;
+      item._id = null;
+      $http.post('/api/expressions', item)
         .success(function(data) {
-            $scope.regexes = data;
-            $scope.newExp = null;
+          $scope.regexes = data;
+          $scope.newExp = null;
         })
         .error(function(data) {
-            console.log('Error: ' + data);
+          console.log('Error: ' + data);
         });
     };
 
     $scope.updateRegex = function() {
-        $http.post('/api/expressions', $scope.curExp)
+      $http.post('/api/expressions', $scope.curExp)
         .success(function(data) {
-            $scope.regexes = data;
-            $scope.newExp = null;
-            $scope.newResp = null;
+          $scope.regexes = data;
+          $scope.newExp = null;
+          $scope.newResp = null;
         })
         .error(function(data) {
-            console.log('Error: ' + data);
+          console.log('Error: ' + data);
         });
     };
 
     $scope.addResponse = function() {
-        if ($scope.newResp === '') {
-            return;
-        }
-        if ($scope.curExp.responses.push($scope.newResp)) {
-            $scope.updateRegex();
-        }
+      if ($scope.newResp === '') {
+        return;
+      }
+      if ($scope.curExp.responses.push($scope.newResp)) {
+        $scope.updateRegex();
+      }
     };
 
     $scope.deleteResponse = function(resp) {
-        var index = $scope.curExp.responses.indexOf(resp);
-        if ($scope.curExp.responses.splice(index, 1)) {
-            $scope.updateRegex();
-        }
+      var index = $scope.curExp.responses.indexOf(resp);
+      if ($scope.curExp.responses.splice(index, 1)) {
+        $scope.updateRegex();
+      }
     };
 
     $scope.deleteRegex = function() {
-        $http.delete('/api/expressions/' + $scope.curExp._id)
+      $http.delete('/api/expressions/' + $scope.curExp._id)
         .success(function(data) {
-            $scope.regexes = data;
-            $scope.curExp = data[0];
+          $scope.regexes = data;
+          $scope.curExp = data[0];
         })
         .error(function(data) {
-            console.log('Error: ' + data);
+          console.log('Error: ' + data);
         });
     };
   });

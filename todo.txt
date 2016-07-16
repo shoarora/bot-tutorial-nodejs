@@ -2,7 +2,6 @@ todo:
 
 ORDER
 
-move mongo stuff to .env
 refresh angular data regularly
 password lock
 clean up front end
