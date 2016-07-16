@@ -114,6 +114,9 @@ angular.module('messageApp', ['ui.bootstrap'])
     $scope.getRegexes();
 
     $scope.newRegex = function() {
+        if ($scope.newExp === '') {
+            return;
+        }
         var item = {};
         item.exp = $scope.newExp;
         item._id = null;
@@ -140,6 +143,9 @@ angular.module('messageApp', ['ui.bootstrap'])
     };
 
     $scope.addResponse = function() {
+        if ($scope.newResp === '') {
+            return;
+        }
         if ($scope.curExp.responses.push($scope.newResp)) {
             $scope.updateRegex();
         }

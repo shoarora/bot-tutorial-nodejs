@@ -32,8 +32,8 @@ var options = {
 };
 
 var mongodbUri = 'mongodb://foo:bar@ds025389.mlab.com:25389/messagebase';
-//var mongodbUri = 'mongodb://ds025389.mlab.com:25389/messagebase';
-//var mongodbUri = 'mongodb://localhost/test';
+var mongodbUri = 'mongodb://' + process.env.DBUSER + ':' + process.env.DBPASS +
+                 '@ds' + process.env.DBID + '.mlab.com:' + process.env.DBID + '/messagebase';
 
 mongoose.connect(mongodbUri, options);
 var conn = mongoose.connection;
