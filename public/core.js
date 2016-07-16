@@ -1,5 +1,5 @@
 angular.module('messageApp', ['ui.bootstrap'])
-  .controller('mainController', function($scope, $http) {
+  .controller('mainController', function($scope, $timeout, $http) {
 
     $scope.newResp = "";
     $scope.sendInput = "";
@@ -191,4 +191,8 @@ angular.module('messageApp', ['ui.bootstrap'])
           console.log('Error: ' + data);
         });
     };
+
+    $scope.$on("$destroy", function(event) {
+      $timeout.cancel(timer);
+    });
   });
