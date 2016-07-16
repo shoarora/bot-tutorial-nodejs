@@ -40,6 +40,7 @@ app.controller('mainController', function($scope, $timeout, $http) {
 
   function scrollToBottom() {
     var elem = document.getElementById('chat');
+    console.log(elem);
     elem.scrollTop = elem.scrollHeight;
   }
 
@@ -84,6 +85,7 @@ app.controller('mainController', function($scope, $timeout, $http) {
       .success(function(data) {
         $scope.sendInput = '';
         $scope.groupme = data.messages;
+        scrollToBottom();
       })
       .error(function(data) {
         console.log('Error: ' + data);
@@ -208,6 +210,7 @@ app.controller('mainController', function($scope, $timeout, $http) {
 });
 app.filter('reverse', function() {
   return function(items) {
+    if (items === null) return null;
     return items.slice().reverse();
   };
 });
