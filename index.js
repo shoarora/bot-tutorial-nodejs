@@ -1,5 +1,4 @@
 // set up ========================
-var env = require('node-env-file');
 var HTTPS = require('https');
 var express = require('express');
 var app = express(); // create our app w/ express
@@ -11,7 +10,6 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 var API = require('groupme').Stateless;
 var timeplan = require('timeplan');
 // configuration =================
-env('./.env');
 
 // local configuration read from env.
 
