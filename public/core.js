@@ -25,6 +25,10 @@ angular.module('messageApp', ['ui.bootstrap'])
         $scope.getGroupme();
         $scope.getSchedule();
         $scope.getRegexes();
+        var now = new Date();
+        if ($scope.date < now) {
+            $scope.date = now;
+        }
 
       }, function() {
         console.log("Timer rejected!");
