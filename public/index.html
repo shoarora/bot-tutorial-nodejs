@@ -30,7 +30,7 @@
     <body ng-controller="mainController" ng-init="getMessages()">
 
         <div layout="row">
-            <div class='col-md-4' style="overflow:scroll; height:800px;">
+            <div class='col-md-4' style="overflow:scroll; height:700px;">
                 <h3>Conversation</h3>
 
                 <ul>
@@ -45,9 +45,8 @@
 
                 <form>
                     <label>Message</label>
-                    <input ng-model="sendInput" type="text">
+                    <input ng-model="sendInput" placeholder="Message" type="text">
                     <button type="submit" ng-click="sendGroupme(sendInput)">Send</button>
-                    <button type="button" ng-click="getGroupme()">Refresh</button>
                 </form>
 
             </div>
@@ -79,7 +78,7 @@
 
                 <form>
                     <label>Message</label>
-                    <input ng-model="scheduleInput" type="text">
+                    <input ng-model="scheduleInput" placeholder="Message" type="text">
                     <button type="submit" ng-click="createSchedule()">Add</button>
                 </form>
 
@@ -114,14 +113,14 @@
 
                 <form>
                     <label>New Regex</label>
-                    <input ng-model="newExp" type="text">
+                    <input ng-model="newExp" placeholder="New Expression" type="text">
                     <button type="submit" ng-click="newRegex()">Add</button>
                 </form>
 
                 <form>
                     <label>New Response</label>
                     <input ng-model="newResp" type="text">
-                    <button type="submit" ng-click="addResponse()">Add</button>
+                    <button type="submit" placeholder="New Response" ng-click="addResponse()">Add</button>
                 </form>
 
             </div>
