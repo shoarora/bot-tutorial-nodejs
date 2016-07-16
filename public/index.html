@@ -30,11 +30,11 @@
     <body ng-controller="mainController" ng-init="getMessages()">
 
         <div layout="row">
-            <div class='col-md-4' style="overflow:scroll; height:400px;">
+            <div class='col-md-4' style="overflow:scroll; height:800px;">
                 <h3>Conversation</h3>
 
                 <ul>
-                    <li ng-repeat="message in groupme">
+                    <li ng-repeat="message in groupme | reverse">
                         <div layout="column">
                             <h3>{{ message.name }}</h3>
                             <h4>{{ message.text }}</h4>

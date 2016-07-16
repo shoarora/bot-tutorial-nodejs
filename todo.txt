@@ -6,4 +6,4 @@ clean up front end
     improve buttons
     prof pic?
     color theme
-    frames
+    general formatting
