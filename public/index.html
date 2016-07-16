@@ -30,7 +30,7 @@
     <body ng-controller="mainController" ng-init="getMessages()">
 
         <div layout="row">
-            <div class='col-xs-4'>
+            <div class='col-md-4' style="overflow:scroll; height:400px;">
                 <h3>Conversation</h3>
 
                 <ul>
@@ -51,7 +51,7 @@
                 </form>
 
             </div>
-            <div class='col-xs-4'>
+            <div class='col-md-4'>
                 <h3>Scheduled Messages</h3>
 
                 <ul>
@@ -84,7 +84,7 @@
                 </form>
 
             </div>
-            <div class='col-xs-4'>
+            <div class='col-md-4'>
                 <h3>Expressions</h3>
 
                 <div class="btn-group" uib-dropdown keyboard-nav>
@@ -98,7 +98,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <button type="button" class="btn btn-default" class='messagepool' ng-click="deleteRegex()">
                     D
                 </button>

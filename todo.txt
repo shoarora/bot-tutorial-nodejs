@@ -4,7 +4,6 @@ ORDER
 
 clean up front end
     improve buttons
-    mobile friendly
     prof pic?
     color theme
     frames
