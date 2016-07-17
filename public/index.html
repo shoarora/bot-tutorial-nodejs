@@ -61,7 +61,7 @@
             <h3>{{ item.message }}</h3>
             <h4>{{ item.when | date: 'short'}}</h4>
             <button type="button" class="btn btn-default" ng-click="deleteSchedule(item._id)">
-              <span class="glyphicons glyphicons-remove"></span>
+              <i class="glyphicons glyphicons-remove"></i>
             </button>
           </div>
         </li>
@@ -70,10 +70,10 @@
       <p class="input-group">
         <input type="text" class="form-control" uib-datepicker-popup="shortDate" ng-model="date" is-open="popup" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
         <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="openPopup()">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </button>
-                    </span>
+            <button type="button" class="btn btn-default" ng-click="openPopup()">
+                <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+        </span>
       </p>
 
       <uib-timepicker ng-model="date" hour-step="1" minute-step="1" show-meridian="true"></uib-timepicker>
@@ -100,14 +100,14 @@
       </div>
 
       <button type="button" class="btn btn-default" class='messagepool' ng-click="deleteRegex()">
-        <span class="glyphicons glyphicons-remove"></span>
+          <i class="glyphicons glyphicons-remove"></i>
       </button>
 
       <ul>
         <li ng-repeat="response in curExp.responses">
           <p class='messagepool'>{{ response }}</p>
           <button type="button" class="btn btn-default" class='messagepool' ng-click="deleteResponse(response)">
-            <span class="glyphicons glyphicons-remove"></span>
+              <i class="glyphicons glyphicons-remove"></i>
           </button>
         </li>
       </ul>
