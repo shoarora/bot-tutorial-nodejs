@@ -3,7 +3,7 @@ todo:
 ORDER
 
 clean up front end
-    improve buttons
     prof pic?
     color theme
     general formatting
+    cdn css

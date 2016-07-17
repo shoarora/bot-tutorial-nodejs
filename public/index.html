@@ -61,7 +61,7 @@
             <h3>{{ item.message }}</h3>
             <h4>{{ item.when | date: 'short'}}</h4>
             <button type="button" class="btn btn-default" ng-click="deleteSchedule(item._id)">
-              <i class="glyphicons glyphicons-remove"></i>
+              <i class="glyphicon glyphicon-remove"></i>
             </button>
           </div>
         </li>
@@ -100,14 +100,14 @@
       </div>
 
       <button type="button" class="btn btn-default" class='messagepool' ng-click="deleteRegex()">
-          <i class="glyphicons glyphicons-remove"></i>
+          <i class="glyphicon glyphicon-remove"></i>
       </button>
 
       <ul>
         <li ng-repeat="response in curExp.responses">
           <p class='messagepool'>{{ response }}</p>
           <button type="button" class="btn btn-default" class='messagepool' ng-click="deleteResponse(response)">
-              <i class="glyphicons glyphicons-remove"></i>
+              <i class="glyphicon glyphicon-remove"></i>
           </button>
         </li>
       </ul>
