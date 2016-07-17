@@ -5,6 +5,5 @@ ORDER
 clean up front end
     prof pic?
     color theme
-    general formatting
     cdn css
     fix timer
