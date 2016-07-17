@@ -7,3 +7,4 @@ clean up front end
     color theme
     general formatting
     cdn css
+    fix timer

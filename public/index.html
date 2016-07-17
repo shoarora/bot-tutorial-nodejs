@@ -37,9 +37,9 @@
       <div id="chat" style="overflow:scroll; height:550px;">
         <ul>
           <li ng-repeat="message in groupme | reverse">
-            <div layout="column">
-              <h3>{{ message.name }}</h3>
-              <h4>{{ message.text }}</h4>
+            <div class="message" layout="column">
+              <h4 class="name">{{ message.name }}</h4>
+              <h4 class="text">{{ message.text }}</h4>
             </div>
 
           </li>
@@ -57,8 +57,8 @@
 
       <ul>
         <li ng-repeat="item in schedule">
-          <div layout="column">
-            <h3>{{ item.message }}</h3>
+          <div layout="row">
+            <h4>{{ item.message }}</h4>
             <h4>{{ item.when | date: 'short'}}</h4>
             <button type="button" class="btn btn-default" ng-click="deleteSchedule(item._id)">
               <i class="glyphicon glyphicon-remove"></i>

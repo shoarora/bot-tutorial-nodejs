@@ -204,9 +204,10 @@ app.controller('mainController', function($scope, $timeout, $http) {
       });
   };
 
-  $scope.$on("$destroy", function(event) {
-    $timeout.cancel(timer);
-  });
+  // $scope.$on("$destroy", function(event) {
+  //   $timeout.cancel(timer);
+  // });
+
 });
 app.filter('reverse', function() {
   return function(items) {
