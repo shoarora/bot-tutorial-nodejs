@@ -31,6 +31,7 @@ app.controller('mainController', function($scope, $timeout, $http) {
       if ($scope.date < now) {
         $scope.date = now;
       }
+      getData();
 
     }, function() {
       console.log("Timer rejected!");

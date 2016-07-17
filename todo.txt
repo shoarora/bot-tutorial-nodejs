@@ -6,4 +6,3 @@ clean up front end
     prof pic?
     color theme
     cdn css
-    fix timer
